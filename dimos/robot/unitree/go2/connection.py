@@ -93,6 +93,10 @@ def make_connection(ip: str | None, cfg: GlobalConfig) -> Go2ConnectionProtocol:
         from dimos.robot.unitree.mujoco_connection import MujocoConnection
 
         return MujocoConnection(cfg)
+    elif ip == "ros2" or connection_type == "ros2":
+        from dimos.robot.unitree.go2.ros2_connection import Go2ROS2Connection
+
+        return Go2ROS2Connection()
     else:
         assert ip is not None, "IP address must be provided"
         return UnitreeWebRTCConnection(ip)
